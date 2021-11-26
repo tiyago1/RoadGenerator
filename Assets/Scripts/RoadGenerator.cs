@@ -85,11 +85,11 @@ public class RoadGenerator : MonoBehaviour
         leftSideVertices = new List<Vector3>()
             {
                 points[0],
-                new Vector3(-(halfWeight + points[0].x), points[0].y, points[0].z),
-                new Vector3(-(halfWeight + points[1].x), points[1].y, points[1].z),
+                new Vector3((-halfWeight + points[0].x), points[0].y, points[0].z),
+                new Vector3((-halfWeight + points[1].x), points[1].y, points[1].z),
                 points[1],
 
-                new Vector3(-(halfWeight + points[2].x), points[2].y, points[2].z),
+                new Vector3((-halfWeight + points[2].x), points[2].y, points[2].z),
                 points[2],
             };
 
@@ -106,7 +106,7 @@ public class RoadGenerator : MonoBehaviour
         {
             List<Vector3> newVertices = new List<Vector3>()
                 {
-                     new Vector3(-(halfWeight + points[i].x), points[i].y, points[i].z),
+                     new Vector3((points[i].x -halfWeight), points[i].y, points[i].z),
                      points[i],
                 };
 
@@ -132,6 +132,7 @@ public class RoadGenerator : MonoBehaviour
         rightSideVertices = new List<Vector3>();
         rightSideVertices.AddRange(leftSideVertices);
         
+
         for (int i = 0; i < rightSideVertices.Count; i++)
         {
             Vector3 newVertice = rightSideVertices[i];
