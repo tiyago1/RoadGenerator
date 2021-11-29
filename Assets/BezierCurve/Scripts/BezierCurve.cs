@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BezierCurve
 {
-    public static List<Vector3> CalculateCurve(Vector3 startPoint, Vector3 controlStartPoint, Vector3 endPoint, Vector3 controlEndPoint, int segment)
+    public static List<Vector3> CalculateCurve(CurveProperties properties)
     {
         List<Vector3> points = new List<Vector3>();
 
         float t = 0;
         float percentageT;
         float finalT;
-        CalculateTValues(segment, out percentageT, out finalT);
 
-        Vector3 p0 = startPoint;
-        Vector3 p1 = controlStartPoint;
-        Vector3 p2 = controlEndPoint;
-        Vector3 p3 = endPoint;
+        CalculateTValues(properties.Segment, out percentageT, out finalT);
+
+        Vector3 p0 = properties.StartPoint;
+        Vector3 p1 = properties.ControlStartPoint;
+        Vector3 p2 = properties.ControlEndPoint;
+        Vector3 p3 = properties.EndPoint;
    
         int counter = 0;
-        List<float> segments = FindSegmentPoints(segment);
+        List<float> segments = FindSegmentPoints(properties.Segment);
 
         while (t < 1.5f)
         {
@@ -67,21 +66,5 @@ public class BezierCurve
         }
 
         return result;
-    }
-
-    public static void Test()
-    {
-        string result = String.Empty;
-        for (int i = 4; i < 100; i++)
-        {
-            int percentage = 100 / i;
-
-            for (int x = 0; x <= 100; x += percentage)
-            {
-                result += x + "-";
-            }
-
-            result = String.Empty;
-        }
     }
 }

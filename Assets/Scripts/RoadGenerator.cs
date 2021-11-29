@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -55,7 +55,16 @@ public class RoadGenerator : MonoBehaviour
 
     private void SetupCurvePoints()
     {
-        points = BezierCurve.CalculateCurve(StartPoint.position, ControlStartPoint.position, EndPoint.position, ControlEndPoint.position, segmentCount);
+        CurveProperties properties = new CurveProperties()
+        {
+            StartPoint = StartPoint.position,
+            ControlStartPoint = ControlStartPoint.position,
+            EndPoint = EndPoint.position,
+            ControlEndPoint = ControlEndPoint.position,
+            Segment = segmentCount
+        };
+
+        points = BezierCurve.CalculateCurve(properties);
     }
 
     private void OnDrawGizmos()

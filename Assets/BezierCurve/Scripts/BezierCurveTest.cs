@@ -16,16 +16,6 @@ public class BezierCurveTest : MonoBehaviour
     public void Awake()
     {
         points = new List<Vector3>();
-
-        //BezierCurve.Test();
-
-        //SetupPoints();
-        //for (int i = 2; i < 100; i++)
-        //{
-        //    segmentCount = i;
-        //    SetupPoints();
-        //}
-
     }
 
     private void Update()
@@ -38,7 +28,16 @@ public class BezierCurveTest : MonoBehaviour
 
     private void SetupPoints()
     {
-        points = BezierCurve.CalculateCurve(StartPoint.position, ControlStartPoint.position, EndPoint.position, ControlEndPoint.position, segmentCount);
+        CurveProperties properties = new CurveProperties()
+        {
+            StartPoint = StartPoint.position,
+            ControlStartPoint = ControlStartPoint.position,
+            EndPoint = EndPoint.position,
+            ControlEndPoint = ControlEndPoint.position,
+            Segment = segmentCount
+        };
+
+        points = BezierCurve.CalculateCurve(properties);
     }
 
     private void OnDrawGizmos()
